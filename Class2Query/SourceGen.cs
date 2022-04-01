@@ -56,9 +56,7 @@ namespace Class2Query.Generated
         {
             var model = compilation.GetSemanticModel(cls.SyntaxTree);
             var classSymbol = ModelExtensions.GetDeclaredSymbol(model, cls);
-            
-            File.WriteAllText("C:\\Temp\\temp.txt", isFilterAttributeSymbol?.Name + "==" + string.Join(",", classSymbol.GetAttributes().Select(ad => ad.AttributeClass.Name)));
-            
+
             if (classSymbol?.GetAttributes().Any(ad => isFilterAttributeSymbol != null && ad.AttributeClass != null && ad.AttributeClass.Name == isFilterAttributeSymbol.Name) ?? false) // todo, weird that  ad.AttributeClass.Equals(attributeSymbol, SymbolEqualityComparer.Default) always returns null - see https://github.com/dotnet/roslyn/issues/30248 maybe?
             {
                 classSymbols.Add(classSymbol);
@@ -130,7 +128,6 @@ namespace Class2Query.Generated
             source.WriteLine("}");
 
             context.AddSource($"{classSymbol.Name}_Class2Query.g.cs", SourceText.From(writer.ToString(), Encoding.UTF8));
-            File.WriteAllText($"C:\\Temp\\{DateTime.UtcNow.Ticks}-{classSymbol.Name}_Class2Query.g.cs", writer.ToString());
         }
     }
 }
