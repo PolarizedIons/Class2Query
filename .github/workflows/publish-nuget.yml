@@ -14,12 +14,12 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.203
+          dotnet-version: 6.0.201
 
       - name: publish on version change
         uses: rohith/publish-nuget@v2
         with:
-          PROJECT_FILE_PATH: PolarizedIons.Class2Query/PolarizedIons.Class2Query.csproj
+          PROJECT_FILE_PATH: Class2Query/Class2Query.csproj
           PACKAGE_NAME: PolarizedIons.Class2Query
           VERSION_REGEX: ^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
