@@ -1,0 +1,26 @@
+﻿name: publish to nuget
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.203
+
+      - name: publish on version change
+        uses: rohith/publish-nuget@v2
+        with:
+          PROJECT_FILE_PATH: PolarizedIons.Class2Query/PolarizedIons.Class2Query.csproj
+          PACKAGE_NAME: PolarizedIons.Class2Query
+          VERSION_REGEX: ^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          INCLUDE_SYMBOLS: true

@@ -3,6 +3,9 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>preview</LangVersion>
+        <Authors>PolarizedIons</Authors>
+        <PackageProjectUrl>https://github.com/PolarizedIons/Class2Query</PackageProjectUrl>
+        <PackageVersion>1.0.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
